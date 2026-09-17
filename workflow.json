@@ -1,0 +1,1442 @@
+{
+  "name": "Proyecto Final - Automatización IA",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Solicitud de Soporte Interno",
+        "formDescription": "Completá el formulario para enviar una solicitud al equipo de soporte.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nombre",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Solicitud",
+              "fieldType": "textarea",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -32,
+        80
+      ],
+      "id": "b0c9889d-4880-44bb-92e6-18f4f1413dad",
+      "name": "Solicitud Recibida",
+      "webhookId": "dcd98c34-3a5d-4470-816b-1dc7c8055e37"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8160c2a0-49a1-4ce3-a384-cce031aa63ab",
+              "name": "ID_Solicitud",
+              "value": "=SOL-{{ $now.toMillis() }}",
+              "type": "string"
+            },
+            {
+              "id": "02e7f7a1-60ea-4305-9c9d-8f5a7bde9d0f",
+              "name": "Estado",
+              "value": "Pendiente",
+              "type": "string"
+            },
+            {
+              "id": "cb96e345-944c-4c61-948d-4e31322e366f",
+              "name": "Fecha",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        192,
+        80
+      ],
+      "id": "86e1132c-9b28-4614-9c84-089cb1e2ba9c",
+      "name": "Preparar Solicitud"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0",
+          "mode": "list",
+          "cachedResultName": "Proyecto Final - Automatización IA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Solicitudes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $json.Email }}",
+            "Solicitud": "={{ $json.Solicitud }}",
+            "Estado": "={{ $json.Estado }}",
+            "Fecha": "={{ $json.Fecha }}",
+            "ID_Solicitud": "={{ $json.ID_Solicitud }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_Solicitud",
+              "displayName": "ID_Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Solicitud",
+              "displayName": "Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tipo",
+              "displayName": "Tipo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Prioridad",
+              "displayName": "Prioridad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resumen_IA",
+              "displayName": "Resumen_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Respuesta_IA",
+              "displayName": "Respuesta_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Aprobado",
+              "displayName": "Aprobado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        80
+      ],
+      "id": "20c7794a-0054-4b6c-871a-197850566935",
+      "name": "Registrar Solicitud",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "4GQyLpe4uSRpIpqH",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.5-flash-lite",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.5-flash-lite"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Analiza la siguiente solicitud interna de soporte.\n\nNombre: {{ $('Preparar Solicitud').item.json.Nombre }}\nSolicitud: {{ $json.Solicitud }}\n\nTu tarea es:\n\n1. Determinar el tipo de solicitud.\n2. Determinar su prioridad: Baja, Media o Alta.\n3. Crear un resumen breve.\n4. Crear una respuesta profesional y breve para el empleado.\n\nCriterios de prioridad:\n- Alta: impide realizar una tarea importante o afecta directamente el trabajo.\n- Media: requiere atención pero el trabajo puede continuar.\n- Baja: consulta o solicitud que no requiere atención inmediata.\n\nDevuelve exclusivamente un objeto JSON con esta estructura:\n\n{\n  \"tipo\": \"...\",\n  \"prioridad\": \"...\",\n  \"resumen\": \"...\",\n  \"respuesta\": \"...\"\n}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "builtInTools": {},
+        "options": {
+          "maxOutputTokens": 500
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        -64,
+        320
+      ],
+      "id": "12a74bd8-9174-4d94-b59c-2a32d8d51ee7",
+      "name": "Analizar con AI",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "n4S6wv0mkGICgZMd",
+          "name": "Google Gemini(PaLM) Api account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const texto = $json.content.parts[0].text;\n\nconst datos = JSON.parse(texto);\n\nreturn [\n  {\n    json: {\n      ID_Solicitud: $('Registrar Solicitud').item.json.ID_Solicitud,\n      tipo: datos.tipo,\n      prioridad: datos.prioridad,\n      resumen_IA: datos.resumen,\n      respuesta_IA: datos.respuesta\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        320
+      ],
+      "id": "b24031b1-804b-4255-8dae-dcc6858256fe",
+      "name": "Ordenar Respuesta IA"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0",
+          "mode": "list",
+          "cachedResultName": "Proyecto Final - Automatización IA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Solicitudes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_Solicitud": "={{ $json.ID_Solicitud }}",
+            "Tipo": "={{ $json.tipo }}",
+            "Prioridad": "={{ $json.prioridad }}",
+            "Resumen_IA": "={{ $json.resumen_IA }}",
+            "Respuesta_IA": "={{ $json.respuesta_IA }}",
+            "Estado": "Pendiente de aprobación"
+          },
+          "matchingColumns": [
+            "ID_Solicitud"
+          ],
+          "schema": [
+            {
+              "id": "ID_Solicitud",
+              "displayName": "ID_Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Solicitud",
+              "displayName": "Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tipo",
+              "displayName": "Tipo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Prioridad",
+              "displayName": "Prioridad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resumen_IA",
+              "displayName": "Resumen_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Respuesta_IA",
+              "displayName": "Respuesta_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Aprobado",
+              "displayName": "Aprobado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        528,
+        320
+      ],
+      "id": "6ca42ae3-30d2-4df9-9a15-b2be8ff62fcc",
+      "name": "Actualizar Solicitud IA",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "4GQyLpe4uSRpIpqH",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "maurohauret@gmail.com",
+        "subject": "=Nueva solicitud pendiente de aprobación - {{ $('Actualizar Solicitud IA').item.json.ID_Solicitud }}",
+        "emailType": "text",
+        "message": "=Nueva solicitud pendiente de aprobación.\n\nID: {{ $('Actualizar Solicitud IA').item.json.ID_Solicitud }} \nNombre: {{ $('Preparar Solicitud').item.json.Nombre }} \nEmail: {{ $('Preparar Solicitud').item.json.Email }}  \n\nSolicitud: \n{{ $('Preparar Solicitud').item.json.Solicitud }}  \n\nAnálisis de IA: \nTipo: {{ $json.Tipo }} \nPrioridad: {{ $json.Prioridad }}  \n\nResumen: {{ $json.Resumen_IA }}  \n\nRespuesta propuesta: {{ $json.Respuesta_IA }} \n\nLa solicitud requiere revisión humana antes de enviar la respuesta al empleado.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        320
+      ],
+      "id": "e3a3da86-8598-45a8-b531-a97c0d700086",
+      "name": "Notificar Aprobación",
+      "webhookId": "2eee9b37-2cf0-4bb7-981c-c978b1c04b06",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZgkPtuATSoPucNYZ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "hour": 1
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0",
+          "mode": "list",
+          "cachedResultName": "Proyecto Final - Automatización IA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Solicitudes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit#gid=0"
+        },
+        "event": "rowUpdate",
+        "options": {
+          "columnsToWatch": [
+            "Aprobado"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        688
+      ],
+      "id": "5b18c302-a2da-44d7-bd5d-8e51e0f68b45",
+      "name": "Detectar Aprobación",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "usVXfmBQbRihhN6o",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "741c8f99-33ee-469e-a7b1-8c6617cea500",
+              "leftValue": "={{ $json.Aprobado }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "a25abb43-fcd2-499f-aa79-6a113b65633b",
+              "leftValue": "={{ $json.Estado }}",
+              "rightValue": "Pendiente de aprobación",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        112,
+        688
+      ],
+      "id": "3b399f52-f2c7-41d0-9f5c-9a13ea6bd9c3",
+      "name": "¿Aprobada?"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "=Respuesta a tu solicitud {{ $json.ID_Solicitud }}",
+        "emailType": "text",
+        "message": "=Hola, ¿Qué tal?, Hemos revisado tu solicitud: \n{{ $json.Solicitud }}  \n\nRespuesta:  \n{{ $json.Respuesta_IA }}  \n\nSaludos, \nEquipo de Soporte.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        400,
+        560
+      ],
+      "id": "ce44e600-ff8d-4f43-b7b6-092259a7ab36",
+      "name": "Enviar Respuesta",
+      "webhookId": "e4517cb3-53a6-427c-9811-a94752c7cfe3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZgkPtuATSoPucNYZ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0",
+          "mode": "list",
+          "cachedResultName": "Proyecto Final - Automatización IA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Solicitudes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_Solicitud": "={{ $('Detectar Aprobación').item.json.ID_Solicitud }}",
+            "Estado": "Enviado",
+            "Prioridad": "={{ $('¿Aprobada?').item.json.Prioridad }}"
+          },
+          "matchingColumns": [
+            "ID_Solicitud"
+          ],
+          "schema": [
+            {
+              "id": "ID_Solicitud",
+              "displayName": "ID_Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Solicitud",
+              "displayName": "Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tipo",
+              "displayName": "Tipo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Prioridad",
+              "displayName": "Prioridad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resumen_IA",
+              "displayName": "Resumen_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Respuesta_IA",
+              "displayName": "Respuesta_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Aprobado",
+              "displayName": "Aprobado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        624,
+        560
+      ],
+      "id": "62c55f65-2f9d-4e77-b815-5c685f87c8d4",
+      "name": "Marcar como Enviado",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "4GQyLpe4uSRpIpqH",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "18056b66-7a65-49b3-a7ef-63d5a94fbf98",
+              "leftValue": "={{$json.Aprobado}}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "8042a007-284f-49da-883b-6bd1bfe59bc4",
+              "leftValue": "={{$json.Estado}}",
+              "rightValue": "Pendiente de aprobación",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        352,
+        800
+      ],
+      "id": "9a1c21dd-a9f2-4a05-8ad6-43558e69ba4f",
+      "name": "¿Rechazada?"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0",
+          "mode": "list",
+          "cachedResultName": "Proyecto Final - Automatización IA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Solicitudes",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Estado": "Rechazado",
+            "ID_Solicitud": "={{ $json.ID_Solicitud }}"
+          },
+          "matchingColumns": [
+            "ID_Solicitud"
+          ],
+          "schema": [
+            {
+              "id": "ID_Solicitud",
+              "displayName": "ID_Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Solicitud",
+              "displayName": "Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tipo",
+              "displayName": "Tipo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Prioridad",
+              "displayName": "Prioridad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resumen_IA",
+              "displayName": "Resumen_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Respuesta_IA",
+              "displayName": "Respuesta_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Aprobado",
+              "displayName": "Aprobado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        624,
+        784
+      ],
+      "id": "694a8dc5-c7fe-437d-9991-432927becba3",
+      "name": "Marcar como Rechazado",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "4GQyLpe4uSRpIpqH",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        400
+      ],
+      "id": "8d57dfe0-2295-4f85-8531-045b95637a79",
+      "name": "ERROR - Detectar Error"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0",
+          "mode": "list",
+          "cachedResultName": "Proyecto Final - Automatización IA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1047917528,
+          "mode": "list",
+          "cachedResultName": "Ejecuciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit#gid=1047917528"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_Ejecucion": "={{ $json.execution.id }}",
+            "Estado": "Error",
+            "Modelo": "Gemini",
+            "Resultado": "La ejecución fue interrumpida debido a un error.",
+            "Error": "={{ $json.execution.error.message }}",
+            "Fecha": "={{ $now.toISO() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_Ejecucion",
+              "displayName": "ID_Ejecucion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID_Solicitud",
+              "displayName": "ID_Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Modelo",
+              "displayName": "Modelo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resultado",
+              "displayName": "Resultado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error",
+              "displayName": "Error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1456,
+        400
+      ],
+      "id": "239a9d39-16f3-47ee-a08d-ba259bd88cf2",
+      "name": "ERROR - Registrar Error",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "4GQyLpe4uSRpIpqH",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0",
+          "mode": "list",
+          "cachedResultName": "Proyecto Final - Automatización IA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1047917528,
+          "mode": "list",
+          "cachedResultName": "Ejecuciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit#gid=1047917528"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_Ejecucion": "={{ $execution.id }}",
+            "Estado": "Enviado",
+            "Modelo": "Gemini",
+            "Resultado": "Solicitud aprobada y respuesta enviada al empleado.",
+            "Fecha": "={{ $now.toISO() }}",
+            "ID_Solicitud": "={{ $json.ID_Solicitud }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_Ejecucion",
+              "displayName": "ID_Ejecucion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID_Solicitud",
+              "displayName": "ID_Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Modelo",
+              "displayName": "Modelo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resultado",
+              "displayName": "Resultado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error",
+              "displayName": "Error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        848,
+        560
+      ],
+      "id": "9b127375-b12e-417b-9c6f-d25cbd23413e",
+      "name": "Registrar Ejecución Aprobada",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "4GQyLpe4uSRpIpqH",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0",
+          "mode": "list",
+          "cachedResultName": "Proyecto Final - Automatización IA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1047917528,
+          "mode": "list",
+          "cachedResultName": "Ejecuciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit#gid=1047917528"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_Ejecucion": "={{ $execution.id }}",
+            "ID_Solicitud": "={{ $('Detectar Aprobación').item.json.ID_Solicitud }}",
+            "Resultado": "Solicitud rechazada por revisión humana.",
+            "Estado": "Rechazado",
+            "Modelo": "Gemini",
+            "Fecha": "={{ $now.toISO() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_Ejecucion",
+              "displayName": "ID_Ejecucion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID_Solicitud",
+              "displayName": "ID_Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Modelo",
+              "displayName": "Modelo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resultado",
+              "displayName": "Resultado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error",
+              "displayName": "Error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        896,
+        784
+      ],
+      "id": "89ed3937-8eb8-4076-826f-b6bd76742d6e",
+      "name": "Registrar Ejecución Rechazada",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "4GQyLpe4uSRpIpqH",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Solicitud Recibida": {
+      "main": [
+        [
+          {
+            "node": "Preparar Solicitud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar Solicitud": {
+      "main": [
+        [
+          {
+            "node": "Registrar Solicitud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Registrar Solicitud": {
+      "main": [
+        [
+          {
+            "node": "Analizar con AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analizar con AI": {
+      "main": [
+        [
+          {
+            "node": "Ordenar Respuesta IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ordenar Respuesta IA": {
+      "main": [
+        [
+          {
+            "node": "Actualizar Solicitud IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar Solicitud IA": {
+      "main": [
+        [
+          {
+            "node": "Notificar Aprobación",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notificar Aprobación": {
+      "main": [
+        []
+      ]
+    },
+    "Detectar Aprobación": {
+      "main": [
+        [
+          {
+            "node": "¿Aprobada?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Aprobada?": {
+      "main": [
+        [
+          {
+            "node": "Enviar Respuesta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "¿Rechazada?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Respuesta": {
+      "main": [
+        [
+          {
+            "node": "Marcar como Enviado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marcar como Enviado": {
+      "main": [
+        [
+          {
+            "node": "Registrar Ejecución Aprobada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Rechazada?": {
+      "main": [
+        [
+          {
+            "node": "Marcar como Rechazado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marcar como Rechazado": {
+      "main": [
+        [
+          {
+            "node": "Registrar Ejecución Rechazada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ERROR - Detectar Error": {
+      "main": [
+        [
+          {
+            "node": "ERROR - Registrar Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "fa533b06-0f57-4b0b-b9bf-d1ef700e6dd7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ff29161785d6be62146daa46dfc55b655c2a00865fd244a2d77d98bb10db9c5c"
+  },
+  "nodeGroups": [],
+  "id": "hgU8W4BfHXJEImk7",
+  "tags": []
+}
