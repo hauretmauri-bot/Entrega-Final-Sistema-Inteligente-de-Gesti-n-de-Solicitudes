@@ -10,7 +10,7 @@ Información del Proyecto
 ---
 
 Enlaces Obligatorios de Entrega
-- Documento Completo (PDF): [Entrega Final_ Sistema Inteligente De Gestión de Solicitudes.pdf](https://github.com/user-attachments/files/32359165/Entrega.Final_.Sistema.Inteligente.De.Gestion.de.Solicitudes.pdf)
+- Documento Completo (PDF): [Entrega Final_ Sistema Inteligente De Gestión de Solicitudes.pdf](https://github.com/user-attachments/files/32362068/Entrega.Final_.Sistema.Inteligente.De.Gestion.de.Solicitudes.pdf)
 - Flujo Técnico (.json): [Proyecto Final - Automatización IA (2).json](https://github.com/user-attachments/files/32359185/Proyecto.Final.-.Automatizacion.IA.2.json)
 - Dashboard de Control & Base de Datos (Shared View): https://docs.google.com/spreadsheets/d/1f7UGJxnAArrakg9J2KwLqHXPuFB94Jhd7cgGQIIm_x0/edit?usp=sharing
 - Video Demo (3 min): [Enlace a Loom/YouTube](PEGA_AQUI_TU_LINK_DEL_VIDEO)
