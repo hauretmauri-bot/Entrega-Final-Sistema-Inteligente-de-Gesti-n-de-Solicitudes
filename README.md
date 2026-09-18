@@ -17,7 +17,8 @@ Enlaces Obligatorios de Entrega
 
 ---
 
-Arquitectura del Sistema
+Arquitectura del Sistema:
+
 El flujo captura solicitudes mediante formulario, procesa el texto con Gemini para clasificar prioridad/categoría, actualiza Google Sheets, solicita revisión humana (HITL) vía correo y ejecuta la notificación final al usuario tras la aprobación o rechazo.
 
 Resiliencia y Manejo de Errores
