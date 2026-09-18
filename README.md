@@ -21,5 +21,6 @@ Arquitectura del Sistema:
 
 El flujo captura solicitudes mediante formulario, procesa el texto con Gemini para clasificar prioridad/categoría, actualiza Google Sheets, solicita revisión humana (HITL) vía correo y ejecuta la notificación final al usuario tras la aprobación o rechazo.
 
-Resiliencia y Manejo de Errores
+Resiliencia y Manejo de Errores:
+
 Cuenta con un nodo "Error Trigger" independiente que intercepta fallos de API o tiempos de espera agotados, guardando el registro técnico en la pestaña "Ejecuciones" de Google Sheets.
