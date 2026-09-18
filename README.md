@@ -4,7 +4,7 @@ Información del Proyecto
 - Autor: Mauricio Hauret
 - Orquestador: n8n
 - Base de Datos: Google Sheets
-- Motor de IA: Google Gemini (Gemini 1.5 Flash-Lite / 2.0 Flash)
+- Motor de IA: Google Gemini (Gemini 2.5 Flash-Lite / 3.5 Flash-Lite)
 - Comunicación: Gmail
 
 ---
