@@ -24,3 +24,6 @@ El flujo captura solicitudes mediante formulario, procesa el texto con Gemini pa
 Resiliencia y Manejo de Errores:
 
 Cuenta con un nodo "Error Trigger" independiente que intercepta fallos de API o tiempos de espera agotados, guardando el registro técnico en la pestaña "Ejecuciones" de Google Sheets.
+
+Aclaraciones:
+Aunque para fines prácticos y de prueba de este prototipo se utilizó un formulario nativo de n8n (n8n Form Trigger), la arquitectura del sistema es totalmente flexible. El canal de entrada puede ser reemplazado fácilmente por herramientas de comunicación interna empresarial como Slack (mediante Slash Commands o un bot de canal), Microsoft Teams, un Formulario de Google / Typeform, o un Webhook personalizado conectado al sistema de soporte de la empresa, sin alterar la lógica de procesamiento con IA ni el control humano del flujo.
